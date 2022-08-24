@@ -17,7 +17,7 @@ services:
     image: dpage/pgadmin4
     container_name: pgadmin4-mentesa
     environment:
-      PGADMIN_DEFAULT_EMAIL: 'allanstark2908@gmail.com'
+      PGADMIN_DEFAULT_EMAIL: 'mentesa@gmail.com'
       PGADMIN_DEFAULT_PASSWORD: '12345'
     ports:
       - '16543:80'
