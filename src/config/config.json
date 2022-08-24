@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "12345",
+    "database": "mentesa",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "port": 15432
+  },
+  "test": {
+    "username": "postgres",
+    "password": "12345",
+    "database": "mentesa",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "12345",
+    "database": "mentesa",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
