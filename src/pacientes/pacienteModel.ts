@@ -3,7 +3,7 @@ import { sequelize } from '../db/index';
 export const PacienteModel = sequelize.define(
   'Paciente',
   {
-    idpaciente: {
+    id_paciente: {
       type: DataTypes.NUMBER,
       primaryKey: true,
       autoIncrement: true,
@@ -21,7 +21,7 @@ export const PacienteModel = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    datanascimento: {
+    data_nascimento: {
       type: DataTypes.DATE,
       allowNull: false,
     },

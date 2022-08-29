@@ -5,7 +5,7 @@ import { sequelize } from '../db/index';
 export const Profissionais = sequelize.define(
   'Profissional',
   {
-    idprofissional: {
+    id_profissional: {
       type: DataTypes.STRING,
       primaryKey: true,
       autoIncrement: true,
