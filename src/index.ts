@@ -1,9 +1,11 @@
+import cors from 'cors';
 import express, { Express } from 'express';
 import './db/index';
 import pacientesRouter from './pacientes/pacienteRouter';
 import profissionaisRouter from './profissionais/profissionaisRouter';
 
 const app: Express = express();
+app.use(cors());
 app.use(express.json());
 
 app.use('/professional', profissionaisRouter);

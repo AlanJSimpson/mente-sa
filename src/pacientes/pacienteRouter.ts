@@ -3,12 +3,14 @@ import {
   deletePaciente,
   findAllPacientes,
   findPaciente,
+  findPacienteByName,
   registerPaciente,
   updatePaciente,
 } from './pacienteController';
 
 const router = express.Router();
 
+router.get('/', findPacienteByName);
 router.get('/findall', findAllPacientes);
 
 router.get('/find/:id', findPaciente);

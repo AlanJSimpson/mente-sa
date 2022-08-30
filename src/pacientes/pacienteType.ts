@@ -3,6 +3,6 @@ export type pacienteType = {
   nome: string;
   cpf: string;
   genero: string;
-  datanascimento: Date;
+  data_nascimento: Date;
   email: string;
 };

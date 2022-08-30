@@ -1,16 +1,18 @@
 import { Request, Response } from 'express';
+import { Op } from 'sequelize';
 import { PacienteModel } from './pacienteModel';
 import { pacienteType } from './pacienteType';
 
 export const registerPaciente = async (req: Request, res: Response) => {
-  const { nome, cpf, genero, datanascimento, email } = req.body as pacienteType;
+  const { nome, cpf, genero, data_nascimento, email } =
+    req.body as pacienteType;
 
   try {
     const registeredPaciente = await PacienteModel.create({
       nome,
       cpf,
       genero,
-      datanascimento,
+      data_nascimento,
       email,
     });
 
@@ -39,18 +41,37 @@ export const findPaciente = async (req: Request, res: Response) => {
   }
 };
 
+export const findPacienteByName = async (req: Request, res: Response) => {
+  const { name } = req.query;
+
+  try {
+    const pacientes = await PacienteModel.findAll({
+      where: {
+        nome: {
+          [Op.like]: '%' + name + '%',
+        },
+      },
+    });
+
+    res.send(pacientes);
+  } catch (error) {
+    error;
+    res.end();
+  }
+};
+
 export const deletePaciente = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const pacienteDeleted = await PacienteModel.destroy({
       where: {
-        idpaciente: id,
+        id_paciente: id,
       },
     });
 
     pacienteDeleted === 0 ? res.status(404).end() : res.status(204).end();
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -61,7 +82,7 @@ export const updatePaciente = async (req: Request, res: Response) => {
   try {
     const objUpdated = await PacienteModel.update(objToUpdate, {
       where: {
-        idpaciente: id,
+        id_paciente: id,
       },
       returning: true,
     });
