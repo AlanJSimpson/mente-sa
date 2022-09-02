@@ -1,12 +1,13 @@
 'use strict';
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../db/index';
+import { Sessao } from '../sessoes/sessoesModel';
 
-export const Profissionais = sequelize.define(
+const Profissionais = sequelize.define(
   'Profissional',
   {
     id_profissional: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -15,7 +16,7 @@ export const Profissionais = sequelize.define(
       allowNull: false,
     },
     crp: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
       allowNull: false,
     },
     contato: {
@@ -29,3 +30,10 @@ export const Profissionais = sequelize.define(
   },
   { timestamps: false, tableName: 'profissionais' }
 );
+
+Profissionais.hasMany(Sessao, {
+  as: 'sessao',
+  foreignKey: 'id_profissional',
+});
+
+export { Profissionais };

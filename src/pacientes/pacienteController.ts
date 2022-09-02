@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
-import { PacienteModel } from './pacienteModel';
+import { Paciente } from './pacienteModel';
 import { pacienteType } from './pacienteType';
 
 export const registerPaciente = async (req: Request, res: Response) => {
@@ -8,7 +8,7 @@ export const registerPaciente = async (req: Request, res: Response) => {
     req.body as pacienteType;
 
   try {
-    const registeredPaciente = await PacienteModel.create({
+    const registeredPaciente = await Paciente.create({
       nome,
       cpf,
       genero,
@@ -24,7 +24,7 @@ export const registerPaciente = async (req: Request, res: Response) => {
 
 export const findAllPacientes = async (_req: Request, res: Response) => {
   try {
-    const Pacientes = await PacienteModel.findAll();
+    const Pacientes = await Paciente.findAll();
     res.send(Pacientes);
   } catch (error) {
     res.status(500).send(error);
@@ -34,7 +34,7 @@ export const findAllPacientes = async (_req: Request, res: Response) => {
 export const findPaciente = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const paciente = await PacienteModel.findByPk(id);
+    const paciente = await Paciente.findByPk(id);
     paciente === null ? res.status(404).end() : res.send(paciente);
   } catch (error) {
     res.send(error);
@@ -45,7 +45,7 @@ export const findPacienteByName = async (req: Request, res: Response) => {
   const { name } = req.query;
 
   try {
-    const pacientes = await PacienteModel.findAll({
+    const pacientes = await Paciente.findAll({
       where: {
         nome: {
           [Op.like]: '%' + name + '%',
@@ -63,7 +63,7 @@ export const findPacienteByName = async (req: Request, res: Response) => {
 export const deletePaciente = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const pacienteDeleted = await PacienteModel.destroy({
+    const pacienteDeleted = await Paciente.destroy({
       where: {
         id_paciente: id,
       },
@@ -80,7 +80,7 @@ export const updatePaciente = async (req: Request, res: Response) => {
   const objToUpdate = req.body;
 
   try {
-    const objUpdated = await PacienteModel.update(objToUpdate, {
+    const objUpdated = await Paciente.update(objToUpdate, {
       where: {
         id_paciente: id,
       },

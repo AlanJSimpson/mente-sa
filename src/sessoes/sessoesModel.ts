@@ -1,46 +1,44 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, literal } from 'sequelize';
 import { sequelize } from '../db/index';
-import { Sessao } from '../sessoes/sessoesModel';
 
-const Paciente = sequelize.define(
-  'Paciente',
+const Sessao = sequelize.define(
+  'Sessao',
   {
-    id_paciente: {
+    id_sessao: {
       type: DataTypes.NUMBER,
       primaryKey: true,
       autoIncrement: true,
     },
-    nome: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    cpf: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    genero: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    data_nascimento: {
+    data_agendamento: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    email: {
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    tema_abordado: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    tipo_de_agendamento: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    duracao: {
+      type: 'TIMESTAMP',
+      defaultValue: literal('CURRENT_TIMESTAMP'),
+      allowNull: false,
+    },
+    tipo_sessao: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
     timestamps: false,
-    tableName: 'pacientes',
+    tableName: 'sessao',
   }
 );
 
-Paciente.hasMany(Sessao, {
-  as: 'paciente_sessao',
-  foreignKey: 'id_paciente',
-});
-
-export { Paciente };
+export { Sessao };

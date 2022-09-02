@@ -2,6 +2,16 @@
 
 Challange from gama academy
 
+## Variáveis de Ambiente
+
+To run this project, you will need to add the following environment variables to your .env
+
+`DB_USERNAME`  
+`DB_PASSWORD`  
+`DB_NAME`  
+`DB_DIALECT`  
+`DB_PORT`
+
 ## Installation
 
 With docker installed on your machine, use the below command to initialize the postgres database and the pgadmin:
